@@ -3,7 +3,7 @@ github repo for the dbt 100 session
 
 ## Introduction
 
-INTRODUCTION*
+Welcome to the DBT 100 session. This session will guide you through the installation and setup of dbt, initialising a dbt project, setting up data sources and deploying your first models.
 
 ## Setup
 
@@ -17,6 +17,8 @@ Create a virtual environment and install dbt
 
 ```
 python3 -m venv .venv
+
+source .venv/bin/activate
 
 pip3 install dbt
 ```
@@ -94,7 +96,7 @@ OK connection ok
 
 ### Deploy your first models
 
-By default, the dbt project comes with two example models. To deploy these models in your project, execute the following command from you prokect directory:
+By default, the dbt project comes with two example models. To deploy these models in your project, execute the following command from you project directory:
 
 ```
 ├── models
@@ -172,7 +174,7 @@ select * from transactions
 To reference models in other models the `{{ ref() }}` function must be used.
 The ref function takes a single argument, the model name.
 
-#### top_10_products.sql
+#### product_transactions.sql
 
 ```sql
 with transactions as (

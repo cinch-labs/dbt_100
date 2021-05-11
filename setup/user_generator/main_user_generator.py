@@ -1,5 +1,5 @@
-from user_generator.users import session_users
-from user_generator.snowflake_class import Snowflake
+from setup.user_generator.users import session_users
+from setup.user_generator.snowflake_class import Snowflake
 from dotenv import load_dotenv
 from operator import itemgetter
 import os
@@ -25,7 +25,7 @@ def create_session_user(snowflake_object, username):
     snowflake_object.execute_query(f"grant select on all tables in schema dbt_100.raw_data to role {role_name}")
     snowflake_object.execute_query(f"create database if not exists {username}_db")
     snowflake_object.execute_query(f"grant ownership on database {username}_db to role {role_name}")
-
+    snowflake_object.execute_query(f"grant ownership on schema {username}_db.public to role {role_name}")
 
 for user in session_users:
     create_session_user(snowflake_object, user["username"])
