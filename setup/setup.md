@@ -74,7 +74,7 @@ The list should be called `session_users` and be defined in the `users.py` scrip
 2. Once the list has been finished, execute the python function:
 
 ```
-python3 ./input_data_generator/main_user_generator.py
+python3 .setup/user_generator/main_user_generator.py
 ```
 
 3. Spot check a couple users have their own user name, role, database and read access to the raw data.

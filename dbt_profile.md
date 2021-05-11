@@ -35,3 +35,5 @@ A dbt profile consists of `targets`. Each `target` specifies:
 
 A profile can have multiple targets to encourage the use of separate dev and prod environments.
 The default profile above has a dev and prod target pointing to different databases. 
+
+#### Navigate back to README [here](README.md)

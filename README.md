@@ -7,7 +7,7 @@ Welcome to the DBT 100 session. This session will guide you through the installa
 
 ## Setup
 
-If you are running the dbt_100 session on a new Snowflake account, the instructions to set everything up are [here.](setup.md)
+If you are running the dbt_100 session on a new Snowflake account, the instructions to set everything up are [here.](setup/setup.md)
 
 ## Session
 
@@ -50,6 +50,7 @@ A dbt profile specifies the warehouse you intent to work with. More information 
 
 In the dbt profile file, add an additional configuration called `snowflake`.
 
+```
 snowflake:
   target: dev
   outputs:
@@ -65,6 +66,7 @@ snowflake:
       threads: [1 of more]
       client_session_keep_alive: False
       query_tag: anything
+```
 
 The account is the snowflake account including the aws region.
 The role, database, warehouse and schema are all the default object you wish to use with dbt.

@@ -1,5 +1,5 @@
-from setup.user_generator.users import session_users
-from setup.user_generator.snowflake_class import Snowflake
+from users import session_users
+from snowflake_class import Snowflake
 from dotenv import load_dotenv
 from operator import itemgetter
 import os

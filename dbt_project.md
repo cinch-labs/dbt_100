@@ -33,3 +33,5 @@ Models are select statements which dbt will build in your warehouse following a 
 dbt snapshots offer a mechanism to detect and record changes in mutable table data. (Status changes over time).
 ### tests
 Tests are assertions you can make against your models. If a test fails, the entire dbt build will fail.
+
+#### Navigate back to README [here](README.md)
