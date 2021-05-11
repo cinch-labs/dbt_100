@@ -3,7 +3,7 @@ github repo for the dbt 100 session
 
 ## Introduction
 
-INTRODUCTION
+INTRODUCTION*
 
 ## Setup
 
@@ -118,11 +118,76 @@ The default location of your source tables is in the models directory. They are 
 
 ### Defining your sources
 
-In the models directory create a new folder called dbt_100 and create an empty yml file named `schema.yml`.
+In the models directory create a new folder called dbt_100 and create an empty yml file named `schema.yml`. This is where the sources will be defined.
 
 ```
 mkdir models/dbt_100
 touch models/dbt_100/schema.yml
 ```
-The ne
+Inside the schema.yml add the following lines:
+```
+version: 2
+
+sources:
+  - name: dbt_100
+    database: dbt_100
+    schema: raw_data
+    tables:
+      - name: customers
+      - name: products
+      - name: transactions
+```
+
+### Writing your first models
+
+To reference a `source` in a dbt model the `{{ source ()}}` function must be used. The function takes two arguments, the source name and table name.
+
+#### products.sql
+
+```sql
+with products as (
+    select * from
+    {{ source ('dbt_100', 'products')}}
+)
+select * from products
+```
+
+#### transactions.sql
+
+```sql
+with transactions as (
+SELECT
+    transaction:CUSTOMER_ID::string as customer_id,
+    transaction:DATE_OF_SESSION::timestamp as session_timestamp,
+    VALUE:PRODUCT_ID::string as product_id,
+    VALUE:PRICE::integer as price
+FROM DBT_100.RAW_DATA.TRANSACTIONS,
+   lateral flatten(input =>  TRANSACTION, path => 'PRODUCTS_VIEWED')
+)
+select * from transactions
+```
+
+### Referencing models
+
+To reference models in other models the `{{ ref() }}` function must be used.
+The ref function takes a single argument, the model name.
+
+#### top_10_products.sql
+
+```sql
+with transactions as (
+    select * from {{ ref('transactions') }}
+), products as (
+    select * from {{ ref('products') }}
+)
+select * from transactions t
+join products p
+on t.product_id = p.product_id
+```
+
+## Author
+
+Cinch data squad
+
+
 
